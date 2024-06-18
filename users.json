@@ -1,0 +1,519 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "npm": "41155050220082",
+            "nama": "Lui Fauzan",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Ketua Lab",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "2",
+            "npm": "41155050220054",
+            "nama": "Anjas Lesmana",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Asisten Lab",
+            "tahunmasuk": "2022",
+            "praktikum_id": "1"
+        },
+        {
+            "id": "3",
+            "npm": "41155050220046",
+            "nama": "Daud Wakur",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Asisten Lab",
+            "tahunmasuk": "2022",
+            "praktikum_id": "2"
+
+        },
+        {
+            "id": "4",
+            "npm": "41155050220050",
+            "nama": "Adhitya Aldi Maulana",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Asisten Lab",
+            "tahunmasuk": "2022",
+            "praktikum_id": "3"
+
+        },
+        {
+            "id": "5",
+            "npm": "41155050220066",
+            "nama": "Putra Fata Difa Ramadhan ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Asisten Lab",
+            "tahunmasuk": "2022",
+            "praktikum_id": "4"
+
+        },
+        {
+            "id": "6",
+            "npm": "41155050220069",
+            "nama": "Maulana Yusuf ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "7",
+            "npm": "41155050220052",
+            "nama": "Dian Ardiansah ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "8",
+            "npm": "41155050220073",
+            "nama": "Bhakti jaelani mirabudi",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "9",
+            "npm": "41155050220063",
+            "nama": "Evreki wan refanja ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "10",
+            "npm": "41155050220048",
+            "nama": "Aditya Perbawa",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "11",
+            "npm": "41155050220081",
+            "nama": "Hasbial Jamil Mardia Putra",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "12",
+            "npm": "41155050220053",
+            "nama": "Rini Rashifah",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "13",
+            "npm": "41155050220057",
+            "nama": "Yuga Azka Al Razzak",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "14",
+            "npm": "41155050220055",
+            "nama": "Reihan Azshar Ismail",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "15",
+            "npm": "41155050220080",
+            "nama": "Nasrul alfhy Nurohmatulloh",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "16",
+            "npm": "41155050220060",
+            "nama": "Rizki Ramdani",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "17",
+            "npm": "41155050220056",
+            "nama": "Juan novriandi ramadhan",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "18",
+            "npm": "41155050220049",
+            "nama": "Muhammad Dzaki khobar rizqi",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "19",
+            "npm": "41155050220061",
+            "nama": "Dadi Bilawa",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "20",
+            "npm": "41155050220058",
+            "nama": "Rayhan Sofian",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "21",
+            "npm": "41155050220075",
+            "nama": "Muhamad Bayu",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "22",
+            "npm": "41155050220083",
+            "nama": "Ariel daffa mahardika",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "23",
+            "npm": "41155050220068",
+            "nama": "Akbar zaelani",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "24",
+            "npm": "41155050220062",
+            "nama": "Naufal Firdaus Kautsar",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "24",
+            "npm": "41155050220084",
+            "nama": "Qori Rahma Naomi Muharam",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        },
+        {
+            "id": "25",
+            "npm": "41155050220079",
+            "nama": "Lira Serli Selviana",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "kelas": "INF-A2",
+            "semester": "4",
+            "email": "@gmail.com",
+            "role": "Mahasiswa",
+            "tahunmasuk": "2022"
+        }
+    ],
+    "dosens": [
+        {
+            "id": "1",
+            "nama": "Agustinus Andriyanto, S.T., M.T., Ph.D.",
+            "nid": "5554321"
+        },
+        {
+            "id": "2",
+            "nama": "Aisyah Nuraeni, S.T., M.T.",
+            "nid": "5548765"
+        },
+        {
+            "id": "3",
+            "nama": "Ali Ahmadi, S.T., M.T.",
+            "nid": "5532109"
+        },
+        {
+            "id": "4",
+            "nama": "Amras Mauluddin, S.Kom., M.T.",
+            "nid": "5556789"
+        },
+        {
+            "id": "5",
+            "nama": "Arief Ginanjar, S.T., M.Kom.",
+            "nid": "5551234"
+        },
+        {
+            "id": "6",
+            "nama": "Dr. Arief Zulianto, S.T., M.T.",
+            "nid": "5543210"
+        },
+        {
+            "id": "7",
+            "nama": "Dr. H. Awan Setiawan, S.Kom., M.T.",
+            "nid": "5557890"
+        },
+        {
+            "id": "8",
+            "nama": "Benie Ilman, S.Kom., M.T.",
+            "nid": "5558901"
+        },
+        {
+            "id": "9",
+            "nama": "Eddy Setiawan Wibowo, B.Eng., M.T.",
+            "nid": "5545678"
+        },
+        {
+            "id": "10",
+            "nama": "Dr. Erwin Yulianto, S.T., M.Kom.",
+            "nid": "5556780"
+        },
+        {
+            "id": "11",
+            "nama": "Estiyan Dwipriyoko, S.Kom., M.T.",
+            "nid": "5551235"
+        },
+        {
+            "id": "12",
+            "nama": "Hadi Prasetyo Utomo, Ph.D.",
+            "nid": "5554322"
+        },
+        {
+            "id": "13",
+            "nama": "Dr.-Ing. Mokhamad Hendayun",
+            "nid": "5543211"
+        },
+        {
+            "id": "14",
+            "nama": "Irwin Supriadi, S.Kom., M.T.",
+            "nid": "5556781"
+        },
+        {
+            "id": "15",
+            "nama": "Iwan Abadi, S.Kom., M.M., M.T.",
+            "nid": "5545679"
+        },
+        {
+            "id": "16",
+            "nama": "KM. Syarif Haryana, S.Kom., M.T.",
+            "nid": "5557891"
+        },
+        {
+            "id": "17",
+            "nama": "Kusmaya, S.Kom., M.T.",
+            "nid": "5558902"
+        },
+        {
+            "id": "18",
+            "nama": "Toto Suharto, S.Kom., M.T.",
+            "nid": "5543212"
+        },
+        {
+            "id": "19",
+            "nama": "Uray Yufikar, Ir., M.T.",
+            "nid": "5551236"
+        },
+        {
+            "id": "20",
+            "nama": "Wahyu Purnama Sari, S.Kom., M.T.",
+            "nid": "5554323"
+        },
+        {
+            "id": "21",
+            "nama": "Yiyi Supendi, S.Kom., M.T.",
+            "nid": "5556782"
+        }
+    ],
+    "praktikums":[
+        {
+            "nama": "PRAKTIKUM PEMROGRAMAN BERORIENTASI OBJEK",
+            "slug": "505231033",
+            "tahunajaran": "2024",
+            "semester": "2"
+        },
+        {
+            "nama": "PRAKTIKUM ALGORITHMA DAN PEMROGRAMAN",
+            "slug": "505121062",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM PEMOGRAMAN WEB DASAR",
+            "slug": "505328081",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM SISTEM OPERASI",
+            "slug": "505329111",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM PEMROGRAMAN MOBILE",
+            "slug": "505528231",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM STRUKTUR DATA",
+            "slug": "505231091",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM BASIS DATA",
+            "slug": "505231431",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM JARINGAN KOMPUTER",
+            "slug": "505428301",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM PEMROGRAMAN WEB FRAMEWORK",
+            "slug": "505432042",
+            "tahunajaran": "2024",
+            "semester": "1"
+        },
+        {
+            "nama": "PRAKTIKUM PEMOGRAMAN BERBASIS DEKSTOP",
+            "slug": "505428491",
+            "tahunajaran": "2024",
+            "semester": "1"
+        }
+    ]
+    
+}
