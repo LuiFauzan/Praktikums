@@ -10,7 +10,7 @@ class MahasiswaController extends Controller
 {
     //
     public function index(){
-        $mahasiswa = User::where('role','Mahasiswa')->latest()->paginate(15);
+        $mahasiswa = User::where('role','Mahasiswa')->latest()->paginate(10);
         return view('mahasiswa.index',compact('mahasiswa'));
     }
     public function store(Request $request)
