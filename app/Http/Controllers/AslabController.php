@@ -29,7 +29,7 @@ class AslabController extends Controller
         'semester' => ['required', 'numeric'],
         'role' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-        'praktikum_id' => ['required_if:role,Asisten Lab'],
+        // 'praktikum_id' => ['required_if:role,Asisten Lab'],
     ]);
 
     $password = Hash::make($request->npm);
@@ -44,11 +44,6 @@ class AslabController extends Controller
         'email' => strtolower($request->email),
         'password' => $password,
     ]);
-
-    if ($request->role === 'Asisten Lab') {
-        $user->praktikum_id = $request->praktikum_id;
-    }
-
     $user->save();
 
     event(new Registered($user));
@@ -69,7 +64,7 @@ class AslabController extends Controller
         $aslab->kelas = $request->kelas;
         $aslab->tahunmasuk = $request->tahunmasuk;
         $aslab->role = $request->role;
-        $aslab->praktikum_id = $request->praktikum_id;
+        // $aslab->praktikum_id = $request->praktikum_id;
         $aslab->save();
 
         return redirect()->back()->with('success', $aslab->nama . ' Berhasil diperbarui');

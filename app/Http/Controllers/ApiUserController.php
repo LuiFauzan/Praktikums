@@ -31,9 +31,6 @@ class ApiUserController extends Controller
             $users->semester = $item['semester'];
             $users->tahunmasuk = $item['tahunmasuk'];
             $users->role = $item['role'];
-            if($item['role'] == "Asisten Lab"){
-                $users->praktikum_id = $item['praktikum_id'];
-            }
             $users->kelas = $item['kelas'];
             $users->save();
         }

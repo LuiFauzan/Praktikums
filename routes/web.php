@@ -13,6 +13,7 @@ use App\Http\Controllers\PraktikumController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\DaftarPraktikumController;
+use App\Http\Controllers\JadwalAslabController;
 use App\Http\Controllers\JadwalPraktikumController;
 use App\Http\Controllers\RiwayatPembayaranController;
 use App\Http\Controllers\WelcomeController;
@@ -48,6 +49,12 @@ Route::put('/dashboard/praktikum/{id}',[PraktikumController::class,'update'])->n
 Route::delete('/dashboard/praktikum/{id}',[PraktikumController::class,'destroy'])->name('praktikum.destroy');
 
 
+// Route Jadwal Aslab
+Route::get('/dashboard/jadwalaslab',[JadwalAslabController::class,'index'])->name('jadwalaslab');
+Route::get('/dashboard/jadwalaslab/{id}/edit',[JadwalAslabController::class,'index'])->name('jadwalaslab.edit');
+Route::post('/dashboard/jadwalaslab',[JadwalAslabController::class,'store'])->name('jadwalaslab.store');
+Route::put('/dashboard/jadwalaslab/{id}',[JadwalAslabController::class,'update'])->name('jadwalaslab.update');
+Route::delete('/dashboard/jadwalaslab/{id}',[JadwalAslabController::class,'destroy'])->name('jadwalaslab.destroy');
 
 // Route Jadwal Praktikum
 Route::get('/dashboard/jadwalpraktikum',[JadwalPraktikumController::class,'index'])->name('jadwalpraktikum');

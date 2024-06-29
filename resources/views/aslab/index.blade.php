@@ -76,17 +76,6 @@
                                     <x-input-error :messages="$errors->get('role')" class="mt-2" />
                                 </div>
                                 
-                                <!-- Field Praktikum -->
-                                <div class="col-span-2" id="praktikumField" x-show="selectedRole === 'Asisten Lab'">
-                                    <x-input-label for="praktikum_id" :value="__('Praktikum')" />
-                                    <select id="praktikum_id" name="praktikum_id" class="block mt-1 w-full">
-                                        @foreach ($praktikum as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                    <x-input-error :messages="$errors->get('praktikum_id')" class="mt-2" />
-                                </div>
-
                                 <!-- Tombol Simpan dan Batal -->
                                 <div class="col-span-2 flex justify-end mt-6">
                                     <button type="button" x-on:click="openModal = false" class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none">Batal</button>
@@ -149,7 +138,7 @@
                                 {{ $item->email }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $item->role }} {{ $item->praktikum->nama }}
+                                {{ $item->role }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 {{-- <a href="{{ route('aslab.edit', $item->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a> --}}
@@ -225,7 +214,7 @@
                                                 </div>
                                                 
                                                 <!-- Field Praktikum -->
-                                                <div class="col-span-2" id="praktikumField" x-show="selectedRole === 'Asisten Lab'">
+                                                {{-- <div class="col-span-2" id="praktikumField" x-show="selectedRole === 'Asisten Lab'">
                                                     <x-input-label for="praktikum_id" :value="__('Praktikum')" />
                                                     <select id="praktikum_id" name="praktikum_id" class="block mt-1 w-full">
                                                         @foreach ($praktikum as $items)
@@ -233,7 +222,7 @@
                                                         @endforeach
                                                     </select>
                                                     <x-input-error :messages="$errors->get('praktikum_id')" class="mt-2" />
-                                                </div>
+                                                </div> --}}
                 
                                                 <!-- Tombol Simpan dan Batal -->
                                                 <div class="col-span-2 flex justify-end mt-6">

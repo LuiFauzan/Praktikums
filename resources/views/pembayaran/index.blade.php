@@ -102,7 +102,7 @@
                                 {{ 'Rp. ' . number_format($item->harga, 0, ',', '.') . ' ,-' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                @if (auth()->user()->praktikum_id == optional(optional($item->jadwalPraktikum)->praktikum)->id)
+                                @if (auth()->user()->id == optional(optional($item->jadwalPraktikum)->user)->id)
                                     <a href="{{ route('pembayaran.edit', $item->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                     <form action="{{ route('pembayaran.destroy', $item->id) }}" method="POST" class="inline">
                                         @csrf

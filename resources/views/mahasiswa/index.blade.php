@@ -148,7 +148,89 @@
                                 4
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('mahasiswa.edit', $item->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                {{-- <a href="{{ route('mahasiswa.edit', $item->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a> --}}
+                                <div class="mb-4" x-data="{ openModal: false, selectedRole: '{{ $item->role }}' }">
+                                    <!-- Tombol untuk Membuka Modal -->
+                                    <button x-on:click="openModal = true" class="text-indigo-600 hover:text-indigo-900">
+                                        Edit
+                                    </button>
+                                
+                                    <!-- Modal untuk Form Update Mahasiswa -->
+                                    <div x-show="openModal" x-on:keydown.escape.window="openModal = false" class="fixed top-0 left-0 w-full h-full p-10 bg-black bg-opacity-50 flex justify-center items-center">
+                                        <!-- Modal Content -->
+                                        <div class="bg-white rounded-lg p-8 max-w-3xl w-full">
+                                            <h2 class="text-lg font-semibold mb-4">Update Mahasiswa</h2>
+                                
+                                            <!-- Form Update Mahasiswa -->
+                                            <form method="POST" action="{{ route('mahasiswa.update', $item->id) }}" class="grid grid-cols-2 gap-x-4">
+                                                @csrf
+                                                @method('PUT')
+                                
+                                                <!-- Nama -->
+                                                <div class="col-span-2">
+                                                    <x-input-label for="nama" :value="__('Nama')" />
+                                                    <x-text-input id="nama" class="block mt-1 w-full" type="text" name="nama" :value="old('nama', $item->nama)" required autofocus autocomplete="nama" />
+                                                    <x-input-error :messages="$errors->get('nama')" class="mt-2" />
+                                                </div>
+                                
+                                                <!-- Email -->
+                                                <div class="col-span-2">
+                                                    <x-input-label for="email" :value="__('Email')" />
+                                                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $item->email)" required autocomplete="username" />
+                                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                                </div>
+                                
+                                                <!-- NPM -->
+                                                <div class="col-span-2">
+                                                    <x-input-label for="npm" :value="__('NPM')" />
+                                                    <x-text-input id="npm" class="block mt-1 w-full" type="text" name="npm" :value="old('npm', $item->npm)" required />
+                                                    <x-input-error :messages="$errors->get('npm')" class="mt-2" />
+                                                </div>
+                                
+                                                <!-- Semester -->
+                                                <div class="col-span-2">
+                                                    <x-input-label for="semester" :value="__('Semester')" />
+                                                    <x-text-input id="semester" class="block mt-1 w-full" type="number" name="semester" :value="old('semester', $item->semester)" required />
+                                                    <x-input-error :messages="$errors->get('semester')" class="mt-2" />
+                                                </div>
+                                
+                                                <!-- Kelas -->
+                                                <div class="col-span-2">
+                                                    <x-input-label for="kelas" :value="__('Kelas')" />
+                                                    <x-text-input id="kelas" class="block mt-1 w-full" type="text" name="kelas" :value="old('kelas', $item->kelas)" required />
+                                                    <x-input-error :messages="$errors->get('kelas')" class="mt-2" />
+                                                </div>
+                                
+                                                <!-- Tahun Masuk -->
+                                                <div class="col-span-2">
+                                                    <x-input-label for="tahunmasuk" :value="__('Tahun Masuk')" />
+                                                    <x-text-input id="tahunmasuk" class="block mt-1 w-full" type="text" name="tahunmasuk" :value="old('tahunmasuk', $item->tahunmasuk)" required />
+                                                    <x-input-error :messages="$errors->get('tahunmasuk')" class="mt-2" />
+                                                </div>
+                                
+                                                <!-- Role -->
+                                                <div class="col-span-2">
+                                                    <x-input-label for="role" :value="__('Role')" />
+                                                    <select id="role" name="role" class="block mt-1 w-full" required x-model="selectedRole">
+                                                        <option value="" disabled>{{ __('Select Role') }}</option>
+                                                        <option value="Mahasiswa" {{ old('role', $item->role) == 'Mahasiswa' ? 'selected' : '' }}>{{ __('Mahasiswa') }}</option>
+                                                        <!-- Tambah opsi role lain jika diperlukan -->
+                                                    </select>
+                                                    <x-input-error :messages="$errors->get('role')" class="mt-2" />
+                                                </div>
+                                
+                                                <!-- Tombol Simpan dan Batal -->
+                                                <div class="col-span-2 flex justify-end mt-6">
+                                                    <button type="button" x-on:click="openModal = false" class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none">Batal</button>
+                                                    <x-primary-button>
+                                                        {{ __('Simpan') }}
+                                                    </x-primary-button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
                                 <form action="{{ route('mahasiswa.destroy', $item->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')

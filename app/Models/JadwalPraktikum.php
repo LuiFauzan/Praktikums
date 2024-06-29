@@ -17,6 +17,9 @@ class JadwalPraktikum extends Model
     public function dosen(){
         return $this->belongsTo(Dosen::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     public function riwayatPraktikum(){
         return $this->hasMany(RiwayatPraktikum::class);
     }

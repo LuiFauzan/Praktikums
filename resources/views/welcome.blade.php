@@ -151,7 +151,7 @@
      <div class="signin">
         
         <div class="content">
-            
+            {{-- {{ $upcomingJadwal }} --}}
             <div class="flex justify-between items-center">
                 <h1 class="text-center text-[#0f0] text-2xl font-bold">Jadwal Praktikum</h1>
                 <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white text-2xl"><i class="fa-solid fa-right-to-bracket"></i></a>
@@ -175,6 +175,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama Praktikum</th>
                     <th scope="col">Nama Dosen</th>
+                    <th scope="col">Nama Asisten</th>
                     <th scope="col">Ruangan</th>
                     <th scope="col">Kelas</th>
                     <th scope="col">Hari</th>
@@ -189,6 +190,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->praktikum->nama }}</td>
                         <td>{{ $item->dosen->nama }}</td>
+                        <td>{{ $item->user->nama }}</td>
                         <td>{{ $item->ruangan }}</td>
                         <td>{{ $item->kelas }}</td>
                         <td>{{ $item->hari }}</td>

@@ -29,13 +29,11 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    
-    public function praktikum()
-    {
-        return $this->belongsTo(Praktikum::class);
-    }
     public function daftarPraktikum(){
         return $this->hasMany(DaftarPraktikum::class);
+    }
+    public function jadwalPraktikum(){
+        return $this->hasMany(JadwalPraktikum::class);
     }
     // public function jadwalPraktikum(){
     //     return $this->hasMany(JadwalPraktikum::class);

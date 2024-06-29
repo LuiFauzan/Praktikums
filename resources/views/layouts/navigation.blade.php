@@ -34,9 +34,9 @@
                 </div>  
                 
                 @endif
-                @if (auth()->user()->role == 'Asisten Lab' && auth()->user()->praktikum_id == true )
+                @if (auth()->user()->role == 'Asisten Lab' && auth()->user()->jadwalPraktikum->first()->praktikum == true )
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('jadwalpraktikum')" :active="request()->routeIs('jadwalpraktikum')">
+                    <x-nav-link :href="route('jadwalaslab')" :active="request()->routeIs('jadwalaslab')">
                         {{ __('Jadwal Praktikum') }}
                     </x-nav-link>
                 </div>
@@ -45,11 +45,7 @@
                         {{ __('Daftar Praktikum') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('mahasiswa')" :active="request()->routeIs('mahasiswa')">
-                        {{ __('Data Mahasiswa') }}
-                    </x-nav-link>
-                </div>
+               
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('pembayaran')" :active="request()->routeIs('pembayaran')">
                         {{ __('Data Pembayaran') }}
@@ -73,8 +69,18 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('mahasiswa')" :active="request()->routeIs('mahasiswa')">
+                        {{ __('Data Mahasiswa') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('praktikum')" :active="request()->routeIs('praktikum')">
                         {{ __('Data Praktikum') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('jadwalpraktikum')" :active="request()->routeIs('jadwalpraktikum')">
+                        {{ __('Jadwal Praktikum') }}
                     </x-nav-link>
                 </div>
                 @endif
@@ -104,7 +110,7 @@
                             @if (auth()->user()->role == 'Asisten Lab')
                            <div>{{ Auth::user()->nama }}</div>
                            <div> {{ Auth::user()->role }}</div>
-                           <div> {{ Auth::user()->praktikum->nama }}</div>
+                           {{-- <div> {{ Auth::user()->jadwalPraktikum->first()->praktikum->nama }}</div> --}}
                            @elseif(auth()->user()->role == 'Ketua Lab')
                            <div>{{ Auth::user()->nama }} </div>
                            <div> {{ Auth::user()->role }}</div>

@@ -13,39 +13,46 @@ class DaftarPraktikumController extends Controller
 {
     //
     public function index(Request $request)
-{
-    $praktikumIdAsistenLab = Auth::user()->praktikum_id;
-
-    // Query untuk mendapatkan daftar kelas, semester, dan tahun masuk yang unik
-    $kelasList = User::select('kelas')->distinct()->pluck('kelas');
-    $semesterList = User::select('semester')->distinct()->pluck('semester');
-    $tahunMasukList = User::select('tahunmasuk')->distinct()->pluck('tahunmasuk');
-
-    $dp = DaftarPraktikum::whereHas('jadwalpraktikum.praktikum', function ($query) use ($praktikumIdAsistenLab) {
-        $query->where('id', $praktikumIdAsistenLab);
-    })->latest()->paginate(10);
-
-    $query = User::where('role', 'Mahasiswa');
-
-    if ($request->filled('kelas')) {
-        $query->where('kelas', $request->kelas);
+    {
+        $asistenLabId = Auth::user()->id;
+    
+        // Query untuk mendapatkan daftar kelas, semester, dan tahun masuk yang unik
+        $kelasList = User::select('kelas')->distinct()->pluck('kelas');
+        $semesterList = User::select('semester')->distinct()->pluck('semester');
+        $tahunMasukList = User::select('tahunmasuk')->distinct()->pluck('tahunmasuk');
+    
+        // Mendapatkan daftar praktikum yang berhubungan dengan jadwal praktikum dari asisten lab yang sedang login
+        $dp = DaftarPraktikum::whereHas('jadwalpraktikum', function ($query) use ($asistenLabId) {
+            $query->whereHas('user', function ($subQuery) use ($asistenLabId) {
+                $subQuery->where('id', $asistenLabId)->where('role', 'Asisten Lab');
+            });
+        })->latest()->paginate(10);
+    
+        // Query untuk mendapatkan daftar mahasiswa
+        $query = User::where('role', 'Mahasiswa');
+    
+        if ($request->filled('kelas')) {
+            $query->where('kelas', $request->kelas);
+        }
+    
+        if ($request->filled('semester')) {
+            $query->where('semester', $request->semester);
+        }
+    
+        if ($request->filled('tahunmasuk')) {
+            $query->where('tahunmasuk', $request->tahunmasuk);
+        }
+    
+        $users = $query->get();
+    
+        // Mendapatkan jadwal praktikum yang berhubungan dengan asisten lab yang sedang login
+        $jadwalPraktikums = JadwalPraktikum::whereHas('user', function ($query) use ($asistenLabId) {
+            $query->where('id', $asistenLabId)->where('role', 'Asisten Lab');
+        })->get();
+    
+        return view('daftarpraktikum.index', compact('dp', 'users', 'jadwalPraktikums', 'kelasList', 'semesterList', 'tahunMasukList'));
     }
-
-    if ($request->filled('semester')) {
-        $query->where('semester', $request->semester);
-    }
-
-    if ($request->filled('tahunmasuk')) {
-        $query->where('tahunmasuk', $request->tahunmasuk);
-    }
-
-    $users = $query->get();
-    $jadwalPraktikums = JadwalPraktikum::whereHas('praktikum', function ($query) use ($praktikumIdAsistenLab) {
-        $query->where('id', $praktikumIdAsistenLab);
-    })->get();
-
-    return view('daftarpraktikum.index', compact('dp', 'users', 'jadwalPraktikums', 'kelasList', 'semesterList', 'tahunMasukList'));
-}
+    
 
     public function store(Request $request)
     {

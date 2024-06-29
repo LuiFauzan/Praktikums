@@ -28,7 +28,7 @@ class WelcomeController extends Controller
 
         $upcomingJadwal = JadwalPraktikum::where('jammulai', '>', $currentTime)
             ->orderBy('jammulai', 'asc')
-            ->take(5) // You can change this to display more or fewer upcoming schedules
+            ->take(1) // You can change this to display more or fewer upcoming schedules
             ->get();
 
         return view('welcome', compact('jp', 'upcomingJadwal'));

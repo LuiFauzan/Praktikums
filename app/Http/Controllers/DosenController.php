@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 
 class DosenController extends Controller
 {
@@ -45,9 +46,20 @@ class DosenController extends Controller
         return redirect()->back()->with('success', $dosen->nama . ' Berhasil Diedit');
     }
     public function destroy($id){
-        $dosen = Dosen::findOrFail($id);
-        $dosen->delete();
-        return redirect()->back()->with(['success' => $dosen->nama . ' Berhasil Dihapus!']);
-
+        try {
+            // Cari user berdasarkan ID dan hapus
+            $dosen = Dosen::findOrFail($id);
+            $dosen->delete();
+    
+            // Redirect dengan pesan sukses jika berhasil dihapus
+            return redirect()->back()->with('success', 'Data Dosen berhasil dihapus.');
+        } catch (QueryException $e) {
+            // Jika terjadi kesalahan constraint violation, tangkap exception dan tampilkan pesan error
+            if ($e->getCode() == 23000) {
+                return redirect()->back()->with('error', 'Data Dosen tidak bisa dihapus karena masih memiliki relasi dengan jadwal praktikum.');
+            }
+            // Jika kesalahan lain, bisa tangkap di sini atau biarkan exception dilanjutkan
+            throw $e;
+        }
     }
 }
