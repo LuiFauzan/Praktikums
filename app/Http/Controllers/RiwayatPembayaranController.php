@@ -6,6 +6,7 @@ use App\Models\Checkout;
 use Illuminate\Http\Request;
 use App\Models\DaftarPraktikum;
 use App\Http\Controllers\Controller;
+use App\Models\JadwalPraktikum;
 use Illuminate\Support\Facades\Auth;
 
 class RiwayatPembayaranController extends Controller
@@ -14,19 +15,20 @@ class RiwayatPembayaranController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $aslabPraktikumId = $user->praktikum_id;
-    
-        // Ubah 'praktikum_id' menjadi 'jadwal_praktikum_id' jika memang benar sesuai struktur tabel
-        $riwayat = Checkout::whereHas('pembayaranPraktikum.jadwalPraktikum', function ($query) use ($aslabPraktikumId) {
-                $query->where('praktikum_id', $aslabPraktikumId);
+        
+        // Mencari semua jadwal praktikum yang dipegang oleh Asisten Lab yang sedang login
+        $jadwalPraktikumIds = JadwalPraktikum::where('user_id', $user->id)->pluck('id');
+        
+        // Mendapatkan riwayat checkout berdasarkan jadwal praktikum yang dipegang oleh Asisten Lab
+        $riwayat = Checkout::whereHas('pembayaranPraktikum.jadwalPraktikum', function ($query) use ($jadwalPraktikumIds) {
+                $query->whereIn('id', $jadwalPraktikumIds);
             })
-            ->with('jadwalPraktikum')
+            ->with('pembayaranPraktikum.jadwalPraktikum')
             ->get();
-    
-        // dd($checkout); // Cek hasil query untuk memastikan data yang diambil sudah sesuai
-    
+        
         return view('riwayat-praktikum.index', compact('user', 'riwayat'));
     }
+    
     public function updateTolak(Request $request, $id)
     {
         // Validasi request jika diperlukan

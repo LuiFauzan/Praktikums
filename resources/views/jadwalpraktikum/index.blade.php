@@ -131,7 +131,8 @@
                         </div>
                     </div>
                 </div>
-                       
+                 <div class="overflow-y-auto">
+                      
                 <table class="min-w-full divide-y w-full divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -354,6 +355,7 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

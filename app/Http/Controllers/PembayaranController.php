@@ -17,7 +17,7 @@ class PembayaranController extends Controller
     //
     public function index()
     {
-        $user = Auth::user('praktikum_id');
+        // $user = Auth::user('praktikum_id');
         $pembayaran = PembayaranPraktikum::with('daftarPraktikum.jadwalPraktikum.praktikum')->paginate(10);
     
         // Ambil daftar praktikum yang unik berdasarkan `jadwal_praktikum_id`
@@ -56,6 +56,20 @@ class PembayaranController extends Controller
     
         return redirect()->back()->with('success', 'Data Pembayaran Berhasil Ditambahkan');
     }
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'jadwal_praktikum_id' => 'required|exists:jadwal_praktikum,id',
+        'harga' => 'required|numeric',
+    ]);
+
+    $pembayaran = PembayaranPraktikum::findOrFail($id);
+    $pembayaran->jadwal_praktikum_id = $request->jadwal_praktikum_id;
+    $pembayaran->harga = $request->harga;
+    $pembayaran->save();
+
+    return redirect()->route('pembayaran.index')->with(['success' => 'Pembayaran berhasil diupdate!']);
+}
 
     public function destroy($id)
     {

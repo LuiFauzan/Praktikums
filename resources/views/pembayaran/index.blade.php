@@ -34,13 +34,13 @@
                                 <!-- Nama Rekening -->
                                 <div class="col-span-2">
                                     <x-input-label for="namarek" :value="__('Nama Rekening')" />
-                                    <x-text-input id="namarek" class="block mt-1 w-full" type="text" name="namarek" :value="old('namarek')" required autofocus autocomplete="namarek" />
+                                    <x-text-input id="namarek" class="block mt-1 w-full disabled" type="text" readonly name="namarek" value="Informatika Unla" autofocus autocomplete="namarek" />
                                     <x-input-error :messages="$errors->get('namarek')" class="mt-2" />
                                 </div>
                                 <!-- Nomor Rekening -->
                                 <div class="col-span-2">
                                     <x-input-label for="norek" :value="__('Nomor Rekening')" />
-                                    <x-text-input id="norek" class="block mt-1 w-full" type="number" name="norek" :value="old('norek')" required />
+                                    <x-text-input id="norek" class="block mt-1 w-full disabled" type="text" readonly name="norek" value="41102321" />
                                     <x-input-error :messages="$errors->get('norek')" class="mt-2" />
                                 </div>
                                 <!-- Harga -->
@@ -103,12 +103,68 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 @if (auth()->user()->id == optional(optional($item->jadwalPraktikum)->user)->id)
-                                    <a href="{{ route('pembayaran.edit', $item->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    <form action="{{ route('pembayaran.destroy', $item->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="confirmButton text-red-600 hover:text-red-900 ml-2">Delete</button>
-                                    </form>
+                                    {{-- <a href="{{ route('pembayaran.edit', $item->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a> --}}
+                                    <div class="flex">
+                                        <div class="mb-4" x-data="{ openModalPembayaran: false }">
+                                            <button x-on:click="openModalPembayaran = true" class="text-indigo-600 hover:text-indigo-900">
+                                                Edit
+                                            </button>
+                                            <!-- Modal untuk Form Update Pembayaran -->
+                                            <div x-show="openModalPembayaran" x-on:keydown.escape.window="openModalPembayaran = false" class="fixed top-0 left-0 w-full h-full p-10 bg-black bg-opacity-50 flex justify-center items-center">
+                                                <!-- Modal Content -->
+                                                <div class="bg-white rounded-lg p-8 max-w-3xl w-full">
+                                                    <h2 class="text-lg font-semibold mb-4">Update Pembayaran</h2>
+                                        
+                                                    <!-- Form Update Pembayaran -->
+                                                    <form method="POST" action="{{ route('pembayaran.update', $item->id) }}" class="grid grid-cols-2 gap-x-4">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <!-- Daftar Praktikum -->
+                                                        <div class="col-span-2">
+                                                            <x-input-label for="jadwal_praktikum_id" :value="__('Daftar Praktikum')" />
+                                                            <select id="jadwal_praktikum_id" name="jadwal_praktikum_id" class="block mt-1 w-full" required>
+                                                                <option value="">Pilih Daftar Praktikum</option>
+                                                                @foreach ($daftarPraktikum as $items)
+                                                                    <option value="{{ $items->jadwalpraktikum->id }}" {{ $item->jadwal_praktikum_id == $items->jadwalpraktikum->id ? 'selected' : '' }}>{{ $items->jadwalPraktikum->praktikum->nama }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <x-input-error :messages="$errors->get('jadwal_praktikum_id')" class="mt-2" />
+                                                        </div>
+                                                        <!-- Nama Rekening -->
+                                                        <div class="col-span-2">
+                                                            <x-input-label for="namarek" :value="__('Nama Rekening')" />
+                                                            <x-text-input id="namarek" class="block mt-1 w-full disabled" type="text" disabled name="namarek" value="Informatika Unla" required autofocus autocomplete="namarek" />
+                                                            <x-input-error :messages="$errors->get('namarek')" class="mt-2" />
+                                                        </div>
+                                                        <!-- Nomor Rekening -->
+                                                        <div class="col-span-2">
+                                                            <x-input-label for="norek" :value="__('Nomor Rekening')" />
+                                                            <x-text-input id="norek" class="block mt-1 w-full disabled" type="number" disabled name="norek" value="41102321" />
+                                                            <x-input-error :messages="$errors->get('norek')" class="mt-2" />
+                                                        </div>
+                                                        <!-- Harga -->
+                                                        <div class="col-span-2">
+                                                            <x-input-label for="harga" :value="__('Harga')" />
+                                                            <x-text-input id="harga" class="block mt-1 w-full" type="number" name="harga" value="{{ $item->harga }}" />
+                                                            <x-input-error :messages="$errors->get('harga')" class="mt-2" />
+                                                        </div>
+                                                        <!-- Tombol Simpan dan Batal -->
+                                                        <div class="col-span-2 flex justify-end mt-6">
+                                                            <button type="button" x-on:click="openModalPembayaran = false" class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none">Batal</button>
+                                                            <x-primary-button>
+                                                                {{ __('Simpan') }}
+                                                            </x-primary-button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                        <form action="{{ route('pembayaran.destroy', $item->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="confirmButton text-red-600 hover:text-red-900 ml-2">Delete</button>
+                                        </form>
+                                    </div>
                                 @endif
                             </td>
                         </tr>

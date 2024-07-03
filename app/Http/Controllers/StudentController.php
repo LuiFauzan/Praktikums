@@ -53,47 +53,49 @@ class StudentController extends Controller
      * Menyimpan data checkout.
      */
     public function checkout(Request $request)
-    {
-        $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+{
+    $request->validate([
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    if ($request->file('photo')) {
+        $fileName = time().'.'.$request->photo->extension();  
+        $request->photo->storeAs('photos', $fileName, 'public');
+
+        // Simpan informasi ke database
+        $checkout = Checkout::create([
+            'user_id' => Auth::id(),
+            'pembayaran_praktikum_id' => $request->pembayaran_praktikum_id,
+            'photo' => $fileName,
+            'status' => 'Pending',
         ]);
-    
-        if ($request->file('photo')) {
-            $fileName = time().'.'.$request->photo->extension();  
-            $request->photo->storeAs('photos', $fileName, 'public');
-    
-            // Simpan informasi ke database
-            $checkout = Checkout::create([
-                'user_id' => Auth::id(),
-                'pembayaran_praktikum_id' => $request->pembayaran_praktikum_id,
-                'photo' => $fileName,
-                'status' => 'Pending',
-            ]);
-    
-            // Mendapatkan praktikum_id dari pembayaranPraktikum yang terkait
-            $pembayaranPraktikum = $checkout->pembayaranPraktikum;
-            $jadwalPraktikum = $pembayaranPraktikum->jadwalPraktikum;
-            $praktikumId = $jadwalPraktikum->praktikum_id;
-    
-            // Mencari Asisten Lab berdasarkan praktikum_id
-            $adminPraktikum = User::where('role', 'Asisten Lab')
-                                  ->where('praktikum_id', $praktikumId)
-                                  ->get();
-    
-            if ($adminPraktikum->isEmpty()) {
-                return redirect()->back()->with('error', 'Tidak ada Asisten Lab yang ditemukan untuk praktikum ini.');
-            }
-    
-            try {
-                Notification::send($adminPraktikum, new PembayaranNotification($checkout));
-                return redirect()->back()->with('success', 'Foto berhasil di-upload.');
-            } catch (\Exception $e) {
-                return redirect()->back()->with('error', 'Gagal mengirim notifikasi: ' . $e->getMessage());
-            }
+
+        // Mendapatkan praktikum_id dari pembayaranPraktikum yang terkait
+        $pembayaranPraktikum = $checkout->pembayaranPraktikum;
+        $jadwalPraktikum = $pembayaranPraktikum->jadwalPraktikum;
+        
+        // Mencari Asisten Lab berdasarkan jadwal_praktikum_id
+        $adminPraktikum = User::where('role', 'Asisten Lab')
+                              ->whereHas('jadwalPraktikum', function ($query) use ($jadwalPraktikum) {
+                                  $query->where('id', $jadwalPraktikum->id);
+                              })
+                              ->get();
+
+        if ($adminPraktikum->isEmpty()) {
+            return redirect()->back()->with('error', 'Tidak ada Asisten Lab yang ditemukan untuk jadwal praktikum ini.');
         }
-    
-        return redirect()->back()->with('error', 'Gagal meng-upload foto.');
+
+        try {
+            Notification::send($adminPraktikum, new PembayaranNotification($checkout));
+            return redirect()->back()->with('success', 'Foto berhasil di-upload.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal mengirim notifikasi: ' . $e->getMessage());
+        }
     }
+
+    return redirect()->back()->with('error', 'Gagal meng-upload foto.');
+}
+
     public function riwayat()
     {
         // Ambil data riwayat pembayaran sesuai user yang login
